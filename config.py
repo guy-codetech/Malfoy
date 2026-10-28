@@ -9,7 +9,7 @@ def _ids(raw):
     return {int(x) for x in raw.replace(" ", "").split(",") if x.isdigit()}
 
 
-BOT_NAME = "Lunii"
+BOT_NAME = "Malfoy Bot"
 TAGLINE = "A little world of coins & chaos"
 VERSION = "1.0.0"
 
@@ -21,9 +21,10 @@ WEBSITE_URL = os.getenv("WEBSITE_URL", "")
 BANNER_URL = os.getenv("BANNER_URL", "")
 LOG_CHANNEL_ID = int(os.getenv("LOG_CHANNEL_ID", "0") or 0)
 
+# Retain the original filename so existing installations keep their player data.
 DATABASE_PATH = "data/lunii.db"
 SYNC_SLASH_ON_START = True
-PRESENCE_TEXT = "{prefix}help | FX DEVELOPMENT"
+PRESENCE_TEXT = "{prefix}help | Malfoy Bot"
 
 ACCENT = 0xFFD9C9
 ACCENT_OK = 0xA8E6C9
@@ -31,7 +32,7 @@ ACCENT_ERR = 0xFF8FA3
 ACCENT_WARN = 0xFFD98A
 ACCENT_INFO = 0xFFE3D6
 
-EMOJI_PREFIX = "lunii_"
+EMOJI_PREFIX = "malfoy_"
 
 CURRENCY = "coins"
 START_CASH = 500

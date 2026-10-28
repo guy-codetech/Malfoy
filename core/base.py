@@ -5,7 +5,7 @@ from discord.ext import commands
 from core import ui
 
 
-class LuniiCog(commands.Cog):
+class MalfoyCog(commands.Cog):
     category = None
 
     def __init__(self, bot):

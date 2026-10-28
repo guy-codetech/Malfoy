@@ -3,12 +3,12 @@ from discord.ext import commands
 
 import config
 from core import ui
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import sync_emojis
 from core.utils import fmt
 
 
-class Owner(LuniiCog):
+class Owner(MalfoyCog):
     category = None
 
     async def cog_check(self, ctx):

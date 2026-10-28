@@ -6,7 +6,7 @@ from discord.ext import commands
 
 import config
 from core import ui
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import E
 
 class HelpView(ui.Layout):
@@ -102,7 +102,7 @@ class HelpView(ui.Layout):
         await self.show(interaction, -1)
 
 
-class Help(LuniiCog):
+class Help(MalfoyCog):
     category = None
 
     @commands.hybrid_command(name="help", aliases=["h", "commands"], help="Open the help menu.")

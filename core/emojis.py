@@ -7,7 +7,7 @@ import discord
 
 import config
 
-log = logging.getLogger("lunii.emojis")
+log = logging.getLogger("malfoy.emojis")
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "emojis.json"

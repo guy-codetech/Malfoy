@@ -5,7 +5,7 @@ from pathlib import Path
 
 import config
 
-log = logging.getLogger("lunii.gifs")
+log = logging.getLogger("malfoy.gifs")
 
 SNAPSHOT = Path(__file__).resolve().parent.parent / "data" / "gif_index.json"
 

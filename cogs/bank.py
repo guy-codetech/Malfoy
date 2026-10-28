@@ -4,7 +4,7 @@ from discord.ext import commands
 
 import config
 from core import ui, utils
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import E
 from core.utils import DepositAmount, WithdrawAmount, fmt
 
@@ -69,7 +69,7 @@ class BankView(ui.Layout):
             await self.refresh(interaction, f"{E.DENIED} You need **{fmt(cost)}** {config.CURRENCY} in your wallet to upgrade.")
 
 
-class Bank(LuniiCog):
+class Bank(MalfoyCog):
     category = "Bank"
     groups = [("Vault", ["bank", "deposit", "withdraw", "upgrade"])]
 

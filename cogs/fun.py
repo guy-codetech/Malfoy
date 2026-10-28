@@ -10,7 +10,7 @@ from discord.ext import commands
 
 import config
 from core import data, ui
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import E
 from core.utils import bar
 
@@ -133,7 +133,7 @@ class RoleplayView(ui.Layout):
         await interaction.followup.send(view=reply)
 
 
-class Fun(LuniiCog):
+class Fun(MalfoyCog):
     category = "Fun"
 
     def __init__(self, bot):

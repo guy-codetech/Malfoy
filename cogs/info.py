@@ -12,7 +12,7 @@ from discord.ext import commands
 
 import config
 from core import ui, utils
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import E
 
 OPS = {
@@ -60,7 +60,7 @@ def memory_usage():
         return None
 
 
-class Info(LuniiCog):
+class Info(MalfoyCog):
     category = "Info"
     groups = [
         ("Bot", ["botinfo", "ping", "uptime", "invite"]),

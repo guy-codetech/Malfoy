@@ -10,10 +10,9 @@ from discord.ext import commands
 import config
 from core import ui
 from core.database import Database
-from core.emojis import E, needs_sync, sync_emojis
 from core.gifs import GifPool
 
-log = logging.getLogger("lunii")
+log = logging.getLogger("malfoy")
 
 
 def category_of(ctx):
@@ -31,7 +30,7 @@ class Blacklisted(commands.CheckFailure):
     pass
 
 
-class Lunii(commands.Bot):
+class Malfoy(commands.Bot):
     def __init__(self):
         intents = discord.Intents.default()
         intents.message_content = True
@@ -80,11 +79,6 @@ class Lunii(commands.Bot):
         await self.load_guild_cache()
         self.session = aiohttp.ClientSession()
         await self.gifs.load(self.session)
-        if needs_sync():
-            try:
-                await sync_emojis(self)
-            except Exception:
-                log.exception("Emoji sync failed")
         for extension in config.EXTENSIONS:
             try:
                 await self.load_extension(extension)

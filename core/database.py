@@ -79,7 +79,7 @@ class Database:
     def __init__(self, path):
         self.path = path
         self.conn = None
-        self._pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="lunii-db")
+        self._pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="malfoy-db")
 
     async def _call(self, fn):
         loop = asyncio.get_running_loop()

@@ -6,12 +6,12 @@ from discord.ext import commands
 
 import config
 from core import ui, utils
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.bot import category_of
 from core.emojis import E
 
 
-class Events(LuniiCog):
+class Events(MalfoyCog):
     def __init__(self, bot):
         super().__init__(bot)
         self.last_xp = {}

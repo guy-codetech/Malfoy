@@ -10,12 +10,12 @@ from discord.ext import commands
 
 import config
 from core import cards, data, ui, utils
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.database import level_for, xp_for
 from core.emojis import E
 from core.utils import Cash, fmt
 
-log = logging.getLogger("lunii.economy")
+log = logging.getLogger("malfoy.economy")
 
 
 class LeaderboardView(ui.Layout):
@@ -78,7 +78,7 @@ class LeaderboardView(ui.Layout):
         await interaction.response.edit_message(view=self)
 
 
-class Economy(LuniiCog):
+class Economy(MalfoyCog):
     category = "Economy"
     groups = [
         ("Earn", ["daily", "work", "beg", "crime", "rob", "pay"]),

@@ -21,7 +21,7 @@ async def main():
     if not config.TOKEN:
         print("No TOKEN found in .env")
         return
-    payload = {}
+    payload = {"username": config.BOT_NAME}
     avatar = ROOT / "assets" / "avatar.png"
     banner = ROOT / "assets" / "banner.png"
     if avatar.exists():
@@ -32,7 +32,7 @@ async def main():
     async with client:
         await client.login(config.TOKEN)
         await client.http.request(Route("PATCH", "/users/@me"), json=payload)
-        print("Avatar and banner updated.")
+        print("Username, avatar and banner updated.")
 
 
 if __name__ == "__main__":

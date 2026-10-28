@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Lunii" width="100%">
+  <img src="assets/banner.png" alt="Malfoy Bot" width="100%">
 </p>
 
-<h1 align="center">Lunii</h1>
+<h1 align="center">Malfoy Bot</h1>
 
 <p align="center">A little world of coins and chaos. Cute economy, games and roleplay Discord bot built with Python and discord.py.</p>
 
@@ -58,8 +58,8 @@
 <td>
 
 ```bash
-git clone https://github.com/r3novadcl/lunii.git
-cd lunii
+git clone https://github.com/guy-codetech/Malfoy.git
+cd Malfoy
 ```
 
 </td>
@@ -83,7 +83,7 @@ Copy `.env.example` to `.env` and fill it in:
 ```env
 TOKEN=YOUR_BOT_TOKEN
 OWNER_IDS=YOUR_DISCORD_ID
-PREFIX=l
+PREFIX=m
 ```
 
 Turn on the **Message Content** intent in the Developer Portal.
@@ -98,7 +98,9 @@ Turn on the **Message Content** intent in the Developer Portal.
 python main.py
 ```
 
-Custom emojis upload automatically on the first start.
+Startup does not upload or synchronize custom emojis. The bot works with text labels
+when no custom emojis are configured. To upload them manually, an owner can run
+`memojisync` (or `<your-prefix>emojisync`) or `python script/emoji_uploader.py`.
 
 </td>
 </tr>
@@ -110,7 +112,7 @@ Custom emojis upload automatically on the first start.
 python script/set_profile.py
 ```
 
-Sets the bot avatar and banner.
+Sets the bot username to Malfoy Bot and applies the avatar and banner.
 
 </td>
 </tr>
@@ -151,6 +153,16 @@ Sets the bot avatar and banner.
 </table>
 
 ## Credits
+
+Malfoy Bot is a modified version of [Lunii](https://github.com/r3novadcl/lunii),
+originally developed by **FX Development / r3novadcl**. This fork is independent
+and is not an official FX Development release or endorsed by the original authors.
+
+Changes in this fork: Malfoy Bot branding, presence and shop title; a rebranded
+banner and profile username; and automatic emoji uploads removed from startup.
+Original author attribution is retained here and in the unchanged [LICENSE](LICENSE).
+
+The database filename remains `data/lunii.db` to preserve existing player data.
 
 Roleplay GIFs are loaded from the community repositories
 [bre4d777/anime-gifs](https://github.com/bre4d777/anime-gifs) and

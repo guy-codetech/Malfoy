@@ -238,7 +238,7 @@ def shop_card(items):
     logo = icon("logo", 72)
     if logo is not None:
         base.alpha_composite(logo, (52, 32))
-    draw_text(base, (140, 30), "Lunii Shop", "Bold", 38)
+    draw_text(base, (140, 30), f"{config.BOT_NAME} Shop", "Bold", 38)
     draw_text(base, (142, 80), "Pick something nice for your adventures", "Medium", 18, T["muted"])
     cols = 2
     tw, th = 400, 150

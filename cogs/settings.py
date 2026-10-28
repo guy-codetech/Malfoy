@@ -5,11 +5,11 @@ from discord.ext import commands
 
 import config
 from core import ui
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import E
 
 
-class Settings(LuniiCog):
+class Settings(MalfoyCog):
     category = "Settings"
     groups = [("Server", ["settings", "prefix", "channel"])]
 

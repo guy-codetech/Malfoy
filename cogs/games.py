@@ -8,7 +8,7 @@ from discord.ext import commands
 
 import config
 from core import ui
-from core.base import LuniiCog
+from core.base import MalfoyCog
 from core.emojis import E
 from core.utils import fmt, parse_amount
 
@@ -237,7 +237,7 @@ class RpsView(ui.Layout):
                 pass
 
 
-class Games(LuniiCog):
+class Games(MalfoyCog):
     category = "Games"
     groups = [("Casino", ["coinflip", "slots", "blackjack", "roulette", "dice", "rps"])]
 
