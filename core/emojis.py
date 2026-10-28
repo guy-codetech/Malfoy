@@ -72,7 +72,7 @@ async def sync_emojis(client):
                 log.warning("Missing emoji file %s", path)
                 continue
             # Discord cannot replace emoji images in place. Version mascot names
-            # by content so manual sync refreshes the cache and reuses each upload.
+            # by content so sync refreshes the cache and reuses each upload.
             name += f"_{hashlib.sha256(path.read_bytes()).hexdigest()[:8]}"
         emoji = existing.get(name)
         if emoji is None:

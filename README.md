@@ -98,10 +98,11 @@ Turn on the **Message Content** intent in the Developer Portal.
 python main.py
 ```
 
-Startup does not upload or synchronize custom emojis. The bot works with text labels
-when no custom emojis are configured. To upload them manually, an owner can run
+Startup automatically synchronizes custom emojis, uploading missing artwork and
+reusing existing uploads. If synchronization fails, the bot logs the error and
+continues starting. To sync again manually, an owner can run
 `memojisync` (or `<your-prefix>emojisync`) or `python script/emoji_uploader.py`.
-Manual sync uploads new logo and coin artwork with versioned names and updates
+Sync uploads new logo and coin artwork with versioned names and updates
 the local emoji cache. Repeating sync reuses those uploads. Older emojis remain
 available so existing messages keep displaying them.
 
@@ -178,7 +179,7 @@ and is not an official FX Development release or endorsed by the original author
 
 Changes in this fork: Malfoy Bot branding, presence and shop title; a rebranded
 banner and profile username; blonde mascot artwork, avatar and branded emojis;
-an emerald and gold card theme; and automatic emoji uploads removed from startup.
+an emerald and gold card theme; and automatic emoji synchronization at startup.
 Original author attribution is retained here and in the unchanged [LICENSE](LICENSE).
 
 The database filename remains `data/lunii.db` to preserve existing player data.

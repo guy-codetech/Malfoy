@@ -10,6 +10,7 @@ from discord.ext import commands
 import config
 from core import ui
 from core.database import Database
+from core.emojis import sync_emojis
 from core.gifs import GifPool
 
 log = logging.getLogger("malfoy")
@@ -79,6 +80,10 @@ class Malfoy(commands.Bot):
         await self.load_guild_cache()
         self.session = aiohttp.ClientSession()
         await self.gifs.load(self.session)
+        try:
+            await sync_emojis(self)
+        except Exception:
+            log.exception("Emoji sync failed")
         for extension in config.EXTENSIONS:
             try:
                 await self.load_extension(extension)
