@@ -26,7 +26,7 @@ DATABASE_PATH = "data/lunii.db"
 SYNC_SLASH_ON_START = True
 PRESENCE_TEXT = "{prefix}help | Malfoy Bot"
 
-ACCENT = 0xFFD9C9
+ACCENT = 0x29674F
 ACCENT_OK = 0xA8E6C9
 ACCENT_ERR = 0xFF8FA3
 ACCENT_WARN = 0xFFD98A
@@ -118,12 +118,12 @@ EXTENSIONS = [
 FONT_DIR = "fonts"
 CARDS_ENABLED = True
 CARD_THEME = {
-    "bg_top": (255, 240, 231),
-    "bg_bottom": (255, 214, 203),
+    "bg_top": (242, 245, 232),
+    "bg_bottom": (208, 226, 211),
     "surface": (255, 255, 255),
-    "ink": (122, 64, 66),
-    "muted": (178, 128, 124),
-    "accent": (255, 166, 150),
-    "accent_soft": (255, 226, 216),
-    "track": (248, 218, 209),
+    "ink": (25, 54, 43),
+    "muted": (83, 111, 94),
+    "accent": (41, 103, 79),
+    "accent_soft": (246, 229, 175),
+    "track": (214, 228, 214),
 }

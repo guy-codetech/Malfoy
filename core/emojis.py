@@ -1,4 +1,5 @@
 import asyncio
+import hashlib
 import json
 import logging
 from pathlib import Path
@@ -13,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "emojis.json"
 UPLOADED = ROOT / "emojis_uploaded.json"
 EMOJI_DIR = ROOT / "assets" / "emojis"
+BRANDED_KEYS = {"LOGO", "COIN"}
 
 
 class EmojiMap:
@@ -64,16 +66,23 @@ async def sync_emojis(client):
     result = {}
     for key, filename in manifest.items():
         name = f"{config.EMOJI_PREFIX}{key.lower()}"
+        path = EMOJI_DIR / filename
+        if key in BRANDED_KEYS:
+            if not path.exists():
+                log.warning("Missing emoji file %s", path)
+                continue
+            # Discord cannot replace emoji images in place. Version mascot names
+            # by content so manual sync refreshes the cache and reuses each upload.
+            name += f"_{hashlib.sha256(path.read_bytes()).hexdigest()[:8]}"
         emoji = existing.get(name)
         if emoji is None:
-            path = EMOJI_DIR / filename
             if not path.exists():
                 log.warning("Missing emoji file %s", path)
                 continue
             try:
                 emoji = await client.create_application_emoji(name=name, image=path.read_bytes())
             except discord.HTTPException as exc:
-                log.warning("Could not upload %s: %s", name, exc)
+                log.warning("Could not synchronize %s: %s", name, exc)
                 continue
             await asyncio.sleep(0.6)
         result[key] = str(emoji)

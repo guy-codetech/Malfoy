@@ -1,3 +1,4 @@
+import argparse
 import json
 import math
 from pathlib import Path
@@ -7,8 +8,8 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 EMOJIS = ASSETS / "emojis"
-FONT_BOLD = "/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf"
-FONT_MED = "/usr/share/fonts/truetype/google-fonts/Poppins-Medium.ttf"
+FONT_BOLD = str(ROOT / "fonts" / "Poppins-Bold.ttf")
+FONT_MED = str(ROOT / "fonts" / "Poppins-Medium.ttf")
 
 INK = (122, 64, 66, 255)
 PINK = (255, 176, 160, 255)
@@ -88,19 +89,28 @@ def centered_text(d, text, cx, cy, size, fill=INK, path=FONT_BOLD):
 CHARACTER = ASSETS / "character.png"
 
 
-def character_crop(box, size):
+def character_portrait(size):
     art = Image.open(CHARACTER).convert("RGBA")
-    return art.crop(box).resize((size, size), Image.LANCZOS)
+    # Frame the blonde mascot's head from the canonical transparent cutout.
+    side = round(art.width * 0.84)
+    return art.crop((art.width - side, 0, art.width, side)).resize((size, size), Image.LANCZOS)
+
+
+def make_avatar():
+    size = 512
+    avatar = Image.new("RGBA", (size, size), (20, 48, 38, 255))
+    d = ImageDraw.Draw(avatar)
+    d.ellipse((18, 18, 494, 494), fill=(32, 76, 55, 255), outline=GOLD, width=8)
+    portrait = character_portrait(424)
+    mask = Image.new("L", portrait.size, 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, 423, 423), fill=255)
+    mask = Image.composite(portrait.getchannel("A"), Image.new("L", portrait.size), mask)
+    avatar.paste(portrait, (44, 44), mask)
+    avatar.save(ASSETS / "avatar.png")
 
 
 def e_logo():
-    art = Image.open(CHARACTER).convert("RGBA")
-    bbox = art.getbbox()
-    art = art.crop(bbox)
-    side = max(art.size)
-    sq = Image.new("RGBA", (side, side), (0, 0, 0, 0))
-    sq.paste(art, ((side - art.width) // 2, (side - art.height) // 2), art)
-    sq.resize((128, 128), Image.LANCZOS).save(EMOJIS / "logo.png")
+    character_portrait(128).save(EMOJIS / "logo.png")
 
 
 def e_coin():
@@ -109,7 +119,7 @@ def e_coin():
     circle(d, 64, 64, 58, GOLD, INK, 6)
     circle(d, 64, 64, 49, (255, 232, 160, 255), GOLD_D, 4)
     inner = 46
-    face = character_crop((170, 140, 1090, 1060), p(inner * 2))
+    face = character_portrait(p(inner * 2))
     mask = Image.new("L", (p(inner * 2), p(inner * 2)), 0)
     ImageDraw.Draw(mask).ellipse([0, 0, p(inner * 2) - 1, p(inner * 2) - 1], fill=255)
     back = Image.new("RGBA", (p(inner * 2), p(inner * 2)), CREAM)
@@ -447,5 +457,14 @@ def make_emojis():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Render bot artwork and emojis.")
+    parser.add_argument("--brand-only", action="store_true", help="Render the avatar, logo and mascot coin only.")
+    args = parser.parse_args()
     ASSETS.mkdir(exist_ok=True)
-    make_emojis()
+    EMOJIS.mkdir(exist_ok=True)
+    make_avatar()
+    if args.brand_only:
+        e_logo()
+        e_coin()
+    else:
+        make_emojis()

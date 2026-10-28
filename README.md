@@ -101,6 +101,9 @@ python main.py
 Startup does not upload or synchronize custom emojis. The bot works with text labels
 when no custom emojis are configured. To upload them manually, an owner can run
 `memojisync` (or `<your-prefix>emojisync`) or `python script/emoji_uploader.py`.
+Manual sync uploads new logo and coin artwork with versioned names and updates
+the local emoji cache. Repeating sync reuses those uploads. Older emojis remain
+available so existing messages keep displaying them.
 
 </td>
 </tr>
@@ -117,6 +120,21 @@ Sets the bot username to Malfoy Bot and applies the avatar and banner.
 </td>
 </tr>
 </table>
+
+## Brand assets
+
+The blonde girl from the supplied reference is Malfoy Bot's mascot. The banner,
+avatar, logo and coin emojis, and profile/rank/wallet cards use this artwork with
+an emerald and gold theme. `assets/character.png` is the canonical transparent
+cutout; `assets/avatar.png` and `assets/banner.png` are ready to apply with the
+optional profile script above.
+
+To rebuild the branded assets locally:
+
+```bash
+python script/make_assets.py --brand-only
+python script/make_banner.py
+```
 
 ## Configuration
 
@@ -159,7 +177,8 @@ originally developed by **FX Development / r3novadcl**. This fork is independent
 and is not an official FX Development release or endorsed by the original authors.
 
 Changes in this fork: Malfoy Bot branding, presence and shop title; a rebranded
-banner and profile username; and automatic emoji uploads removed from startup.
+banner and profile username; blonde mascot artwork, avatar and branded emojis;
+an emerald and gold card theme; and automatic emoji uploads removed from startup.
 Original author attribution is retained here and in the unchanged [LICENSE](LICENSE).
 
 The database filename remains `data/lunii.db` to preserve existing player data.
